@@ -40,8 +40,25 @@
             </div>
           </div>
         </div>
-
-
+         <!-- --------------------------------------->
+        <div class="card">
+          <div class="card-header">
+            <h3><strong>Recetas</strong></h3>
+          </div>
+          <div class="card-body">
+            <h2 id="nombre">"Duraznos con Helado"</h2>
+            <div id="stats">
+              <h3><strong>Categoria:</strong> <span id="categoria">Postre</span></h3>
+              <br>
+              <br>
+              <h3><strong>Ingredientes:</strong> <span id="ingredientes">2 duraznos partidos a la mitad, 2 cucharadas de azúcar glas, 1 cucharadita de aceite, helado de yogurt de tu preferencia</span></h3>
+              <br>
+              <br>
+              <h3><strong>Método de preparación:</strong> <span id="prep">Espolvorea con azúcar glas los duraznos, calienta una parrilla con aceite y pon los duraznos boca abajo por 3 min y sirve con helado</span></h3>
+            </div>
+          </div>
+        </div>
+       <!-- --------------------------------------->
       </div>
     </div>
   </div>
@@ -50,9 +67,6 @@
  <script type="text/javascript">
     $("#search-btn").on("click", function() {
       var searchedCharacter = $("#character-search").val().trim();
-
-      // Using a RegEx Pattern to remove spaces from searchedCharacter
-      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
       searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
 
       $.get("/api/recetas/" + searchedCharacter, function(data) {

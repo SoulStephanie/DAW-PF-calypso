@@ -16,11 +16,11 @@ app.use(express.json());
 // =============================================================
 var receta = [
   {
-    routenombre: "yoda",
-    nombre: "Yoda",
-    categoria: "Jedi Master",
-    Ingredientes: 900,
-    prep: 2000
+    routenombre: "Duraznosconhelado",
+    nombre: "Duraznos con Helado",
+    categoria: "Postre ",
+    Ingredientes: " 2 duraznos partidos a la mitad, 2 cucharadas de azúcar glas, 1 cucharadita de aceite, helado de yogurt de tu preferencia",
+    prep: "Espolvorea con azúcar glas los duraznos, calienta una parrilla con aceite y pon los duraznos boca abajo por 3 min, retíralos y sirve el helado sobre los duraznos"
   }
 ];
 

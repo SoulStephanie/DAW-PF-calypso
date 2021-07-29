@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Agrega una receta</title>
+  <title>Recetario Virtual: Calypso</title>
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,65 +16,84 @@
 
   <div class="container">
     <div class="jumbotron">
-      <h1>Recetario Virtual</h1>
-      <h3>La gastronomía es el arte de usar los alimentos para crear felicidad</h3>
+      <h1>Recetario Virtual </h1>
+      <h3>No hay amor más sincero que el amor a la cocina.</h3>
       <hr>
       <a href="/">
-        <button class="btn btn-danger btn-lg">
-          <span class="fa fa-eye"></span> Buscar recetas</button>
+        <button class="btn btn-info btn-lg">
+          <span class="fa fa-eye"></span> Busca más recetas</button>
       </a>
       <a href="/all">
-        <button class="btn btn-danger btn-lg">
-          <span class="fa fa-th-list"></span> Tus recetas</button>
+        <button class="btn btn-secondary btn-lg">
+          <span class="fa fa-th-list"></span> Tus recetas </button>
       </a>
     </div>
     <div class="row">
- <!--===============================================-->
 
-        <div class="col-lg-12">
+      <div class="col-lg-12">
 
-            <div class="card">
-              <div class="card-header">
-                Agrega una nueva receta
+        <div class="card">
+          <div class="card-header">
+            Comparte tu conocimiento
+          </div>
+          <div class="card-body">
+            <form role="form">
+
+              <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" class="form-control" id="Nombre">
               </div>
-              <div class="card-body">
-                <form role="form">
-    
-                  <div class="form-group">
-                    <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name">
-                  </div>
-    
-                  <div class="form-group">
-                    <label for="role">Categoria</label>
-                    <input type="text" class="form-control" id="role">
-                  </div>
-    
-                  <div class="form-group">
-                    <label for="age">Ingredientes</label>
-                    <input type="text" class="form-control" id="age">
-                  </div>
 
-                  <div class="form-group">
-                    <label for="age">Modo de preparación</label>
-                    <input type="text" class="form-control" id="age">
-                  </div>
-    
-                </form>
-                <br>
-                <div class="text-right">
-                  <button type="submit" class="btn btn-primary btn-md" id="add-btn">
-                    <span class="fa fa-fire"></span> Agregar a mis recetas</button>
-                </div>
+              <div class="form-group">
+                <label for="role">Categoria</label>
+                <input type="text" class="form-control" id="categoria">
               </div>
+
+              <div class="form-group">
+                <label for="age">Ingredientes</label>
+                <input type="text" class="form-control" id="Ingredientes">
+              </div>
+
+              <div class="form-group">
+                <label for="force-points">Método de preparación</label>
+                <input type="text" class="form-control" id="prep">
+              </div>
+
+            </form>
+            <br>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn">
+                <span class="fa fa-fire"></span> Añadir la receta </button>
             </div>
-    
           </div>
         </div>
+
       </div>
-    
+    </div>
+  </div>
 
+  <script type="text/javascript">
+    // Question: What does this code do?
+    $("#add-btn").on("click", function(event) {
+      event.preventDefault();
 
+      var newReceta = {
+        Nombre: $("#nombre").val().trim(),
+        Categoria: $("#categoria").val().trim(),
+        Instrucciones: $("#Ingredientes").val().trim(),
+        Prep: $("#prep").val().trim()
+      };
+
+      // Question: What does this code do??
+      $.post("/api/recetas", newRecetas)
+        .then(function(data) {
+          console.log(data);
+          alert("Añadiendo receta...");
+        });
+
+    });
+
+  </script>
 </body>
 
 </html>

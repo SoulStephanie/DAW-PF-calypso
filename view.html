@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Recetario Virtual</title>
+  <title>Recetario Virtual: Calypso</title>
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,10 +17,11 @@
   <div class="container">
     <div class="jumbotron">
       <h1>Recetario Virtual</h1>
-      <h3>¡Cualquiera puede cocinar!</h3>
+      <h3>¡La felicidad solo es real cuando se comparte!</h3>
       <hr>
-      <a href="/add"><button class="btn btn-danger btn-lg" id= btn-add><span class="fa fa-plus"></span> Añade una receta</button></a>
-      <a href="/all"><button class="btn btn-danger btn-lg" id= btn-todos><span class="fa fa-th-list"></span> Todas tus recetas</button></a>
+      <a href="/add"><button class="btn btn-warning btn-lg"><span class="fa fa-plus"></span> Añade una receta </button></a>
+
+      <a href="/all"><button class="btn btn-light btn-lg"><span class="fa fa-th-list"></span> Tus recetas </button></a>
     </div>
     <div class="row">
 
@@ -28,20 +29,49 @@
 
         <div class="card mb-4">
           <div class="card-header">
-            <h3><strong> Buscar recetas</strong></h3>
+            <h3><strong>Más recetas</strong></h3>
           </div>
           <div class="card-body">
             <input type="text" id="character-search" class="form-control">
             <br>
             <div class="text-right">
-              <button type="submit" class="btn btn-primary btn-md" id="search-btn"><span class="fa fa-search"></span> Buscar</button>
+              <button type="submit" class="btn btn-primary btn-md" id="search-btn"><span class="fa fa-search"></span> Aprendamos a cocinar con la cocina de otros...</button>
 
             </div>
           </div>
         </div>
+
+
+      </div>
     </div>
   </div>
+ <!-- --------------------------------------->
 
+ <script type="text/javascript">
+    $("#search-btn").on("click", function() {
+      var searchedCharacter = $("#character-search").val().trim();
+
+      // Using a RegEx Pattern to remove spaces from searchedCharacter
+      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+      searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+
+      $.get("/api/recetas/" + searchedCharacter, function(data) {
+        console.log(data);
+        if (data) {
+          $("#stats").show();
+          $("#nombre").text(data.nombre);
+          $("#categoria").text(data.categoria);
+          $("#ingredientes").text(data.ingredientes);
+          $("#prep").text(data.prep);
+        }
+        else {
+          $("#nombre").text("No se encontraron recetas con ese título");
+          $("#stats").hide();
+        }
+      });
+    });  
+   </script> 
+ 
 
 </body>
 

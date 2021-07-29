@@ -1,40 +1,26 @@
 {
-  "name": "DAW-PF-calypso",
+  "name": "starwars-express",
   "version": "1.0.0",
-  "description": "",
-<<<<<<< HEAD
   "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "watch": "nodemon server.js"
   },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SoulStephanie/DAW-PF-calypso.git"
-=======
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/D3ceiver-00/DAW-PF-calypso.git"
->>>>>>> b23a37ce6e85f1106e17f24c0b1a670d67c89544
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
-<<<<<<< HEAD
     "url": "https://github.com/SoulStephanie/DAW-PF-calypso/issues"
   },
   "homepage": "https://github.com/SoulStephanie/DAW-PF-calypso#readme",
-  "dependencies": {
-    "express": "^4.17.1"
-  }
-=======
-    "url": "https://github.com/D3ceiver-00/DAW-PF-calypso/issues"
-  },
-  "homepage": "https://github.com/D3ceiver-00/DAW-PF-calypso#readme"
->>>>>>> b23a37ce6e85f1106e17f24c0b1a670d67c89544
+  "description": ""
 }

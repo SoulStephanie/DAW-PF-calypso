@@ -1,15 +1,30 @@
-// Dependencias
+// Dependencies
+// =============================================================
 var express = require("express");
 var path = require("path");
 
-// Habilitar Express
+// Sets up the Express App
+// =============================================================
 var app = express();
 var PORT = process.env.PORT || 3000;
+
+// Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Star Wars Characters (DATA)
+// =============================================================
+var receta = [
+  {
+    routenombre: "yoda",
+    nombre: "Yoda",
+    categoria: "Jedi Master",
+    Ingredientes: 900,
+    prep: 2000
+  }
+];
 
-// Rutas
+// Routes
 // =============================================================
 
 // Basic route that sends the user first to the AJAX Page
@@ -25,11 +40,42 @@ app.get("/all", function(req, res) {
   res.sendFile(path.join(__dirname, "all.html"));
 });
 
-app.get("/search", function(req, res) {
-    res.sendFile(path.join(__dirname, "search.html"));
-  });
+// Displays all recetas
+app.get("/api/recetas", function(req, res) {
+  return res.json(receta);
+});
+
+// Displays a single receta, or returns false
+app.get("/api/recetas/:receta", function(req, res) {
+  var chosen = req.params.receta;
+
+  console.log(chosen);
+
+  for (var i = 0; i < recetas.length; i++) {
+    if (chosen === recetas[i].routenombre) {
+      return res.json(recetas[i]);
+    }
+  }
+
+  return res.json(false);
+});
 
 
+app.post("/api/recetas", function(req, res) {
+  // req.body hosts is equal to the JSON post sent from the user
+  // This works because of our body parsing middleware
+  var newReceta = req.body;
+
+  // Using a RegEx Pattern to remove spaces from newCharacter
+  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+  newReceta.routeName = newReceta.nombre.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newReceta);
+
+  recetas.push(newReceta);
+
+  res.json(newReceta);
+});
 
 // Starts the server to begin listening
 // =============================================================
